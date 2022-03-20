@@ -16,14 +16,14 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザID');
-            $table->unsignedInteger('tweet_id')->comment('ツイートID');
+            $table->unsignedInteger('post_id')->comment('ツイートID');
             $table->string('text')->comment('本文');
             $table->softDeletes();
             $table->timestamps();
 
             $table->index('id');
             $table->index('user_id');
-            $table->index('tweet_id');
+            $table->index('post_id');
 
             $table->foreign('user_id')
                 ->references('id')
@@ -31,9 +31,9 @@ class CreateCommentsTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('tweet_id')
+            $table->foreign('post_id')
                 ->references('id')
-                ->on('tweets')
+                ->on('posts')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
