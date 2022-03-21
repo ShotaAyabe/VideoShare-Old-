@@ -16,15 +16,15 @@ class CreateFavoritesTable extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザID');
-            $table->unsignedInteger('tweet_id')->comment('ツイートID');
+            $table->unsignedInteger('post_id')->comment('ツイートID');
 
             $table->index('id');
             $table->index('user_id');
-            $table->index('tweet_id');
+            $table->index('post_id');
 
             $table->unique([
                 'user_id',
-                'tweet_id'
+                'post_id'
             ]);
 
             $table->foreign('user_id')
@@ -33,9 +33,9 @@ class CreateFavoritesTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('tweet_id')
+            $table->foreign('post_id')
                 ->references('id')
-                ->on('tweets')
+                ->on('posts')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
