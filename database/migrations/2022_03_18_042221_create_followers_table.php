@@ -28,6 +28,8 @@ class CreateFollowersTable extends Migration
             ]);
         });
     }
+    
+//Comments
 
     /**
      * Reverse the migrations.
